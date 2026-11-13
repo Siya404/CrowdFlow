@@ -73,7 +73,7 @@ export default function Home() {
     const timer = window.setInterval(() => {
       const i = tick.current++ % initialZones.length;
       setZones(current => current.map((z, index) => index === i ? { ...z, inside: Math.min(z.capacity - z.queued, Math.max(12, z.inside + (tick.current % 5 === 0 ? -3 : 2))) } : z));
-      if (tick.current % 3 === 0) setActivity(items => [{ id: Date.now(), kind: 'INFO', message: `Crowd telemetry refreshed · ${initialZones[i].name} · zone density updated`, time: clockLabel() }, ...items].slice(0, 12));
+      if (tick.current % 3 === 0) setActivity(items => [{ id: Date.now(), kind: 'INFO', message: `Crowd telemetry refreshed · ${initialZones[i].name} · zone density updated`, time: clockLabel() },as Activity, ...items].slice(0, 12));
     }, 2200);
     return () => window.clearInterval(timer);
   }, [simulation]);
